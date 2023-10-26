@@ -12,7 +12,7 @@ export default async function Comics() {
     return (
       <main>
         <h1>Comics de Marvel</h1>
-        <Principal title={"Todos los comics de Marvel"} data={comics} />
+        <Principal title={"Todos los comics de Marvel"} data={"comics"} />
         <Link href={"/"} >Inicio</Link>
       </main>
     )

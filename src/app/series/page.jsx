@@ -11,7 +11,7 @@ export default async function Series() {
     return (
       <main>
         <h1>Series de Marvel</h1>
-        <Principal title={"Todas las series de Marvel"} data={series} />
+        <Principal title={"Todas las series de Marvel"} data={"series"} />
         <Link href={"/"} >Inicio</Link>
       </main>
     )

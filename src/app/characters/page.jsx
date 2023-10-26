@@ -12,7 +12,7 @@ export default async function Characters() {
   return (
     <main>
       <h1>Personajes de Marvel</h1>
-      <Principal title={"Todos los personajes de Marvel"} data={characters} />
+      <Principal title={"Todos los personajes de Marvel"} data={"characters"} />
       <Link href={"/"}>Inicio</Link>
     </main>
   );
