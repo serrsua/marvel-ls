@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const data = [
-  { href: "/characters", title: "Personajes"},
-  { href: "/comics", title: "Comics"},
-  { href: "/series", title: "Series" },
+  { href: "/category/characters", title: "Personajes"},
+  { href: "/category/comics", title: "Comics"},
+  { href: "/category/series", title: "Series"},
 ];
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <div className="flex flex-col gap-5 m-10 w-full items-center">
         {data.map((route) => (
           <div className="flex w-[100%] h-52 lg:h-96 items-center justify-center" key={route.title}>
-            <Link className="rounded-lg bg-red-400 h-4/5 w-4/5" href={route.href}>{route.title}</Link>
+            <Link className="rounded-lg bg-red-400 h-4/5 w-4/5" href={`${route.href}?es=${route.title}`}>{route.title}</Link>
           </div>
         ))}
       </div>
