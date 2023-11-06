@@ -7,11 +7,11 @@ const CategoryPage = async ({ params, searchParams }) => {
   const { es } = searchParams;
   const category = params.category[1];
 
-  // const data = (
-  //   await axios.get(
-  //     `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
-  //   )
-  // ).data.data;
+  const data = (
+     await axios.get(
+       `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
+     )
+   ).data.data;
 
   //filtra datos dependiendo de la categoria
   const filteredData = Filter(category, data)
