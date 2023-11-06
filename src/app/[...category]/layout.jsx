@@ -5,7 +5,7 @@ const LayoutHome = ({ children, params }) => {
   const category = params.category[1]
 
   return (
-    <section className="grid grid-cols-[20%,auto] grid-rows-2">
+    <section className="grid grid-cols-[20%,80%] grid-rows-[70px, auto]">
       <NavBar title={category} />
       <AsideBar />
       {children}
