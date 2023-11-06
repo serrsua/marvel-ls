@@ -1,19 +1,21 @@
 import axios from "axios";
 import Link from "next/link";
+import Main from "../components/main";
+import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
   const { es } = searchParams;
   const category = params.category[1];
-  //   console.log("category: ", category);
 
-  //comentado para que no se haga al pedo el axios...
+  // const data = (
+  //   await axios.get(
+  //     `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
+  //   )
+  // ).data.data;
 
-  //   const data = (
-  //     await axios.get(
-  //       `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
-  //     )
-  //   ).data.data;
-  //   console.log(data);
+  //filtra datos dependiendo de la categoria
+  const filteredData = Filter(category, data)
+
   return (
     <section>
       <h2>
@@ -21,6 +23,7 @@ const CategoryPage = async ({ params, searchParams }) => {
           ? "Todas las Series de Marvel"
           : `Todos los ${es} de Marvel`}
       </h2>
+      <Main data={filteredData} category={category} />
     </section>
   );
 };
