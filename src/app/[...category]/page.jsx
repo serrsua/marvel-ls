@@ -4,17 +4,23 @@ import Main from "../components/main";
 import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { es } = searchParams;
+  const { es, offset } = searchParams;
   const category = params.category[1];
 
-  const data = (
-     await axios.get(
-       `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
-     )
-   ).data.data;
+  const getData = async (offset = 0) => {
+    const data = (
+      await axios.get(
+        `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}`
+      )
+    ).data.data;
+    return data;
+  };
+
+  //llamamos por el offset que se quiera
+  const data = await getData(offset);
 
   //filtra datos dependiendo de la categoria
-  const filteredData = Filter(category, data)
+  const filteredData = Filter(category, data);
 
   return (
     <section>
