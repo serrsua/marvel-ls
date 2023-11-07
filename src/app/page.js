@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const data = [
-  { href: "/category/characters", title: "Personajes"},
-  { href: "/category/comics", title: "Comics"},
-  { href: "/category/series", title: "Series"},
+  { href: "/category/characters" },
+  { href: "/category/comics" },
+  { href: "/category/series" },
 ];
 
 export default function Home() {
@@ -12,8 +12,16 @@ export default function Home() {
       <h1 className=" text-4xl font-bold mt-10">Mundo Marvel</h1>
       <div className="flex flex-col gap-5 m-10 w-full items-center">
         {data.map((route) => (
-          <div className="flex w-[100%] h-52 lg:h-96 items-center justify-center" key={route.title}>
-            <Link className="rounded-lg bg-red-400 h-4/5 w-4/5" href={`${route.href}?es=${route.title}`}>{route.title}</Link>
+          <div
+            className="flex w-[100%] h-52 lg:h-96 items-center justify-center"
+            key={route.title}
+          >
+            <Link
+              className="rounded-lg bg-red-400 h-4/5 w-4/5"
+              href={`${route.href}`}
+            >
+              {route.title}
+            </Link>
           </div>
         ))}
       </div>
