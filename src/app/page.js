@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const data = [
-  { href: "/category/characters", title: "Personajes" },
-  { href: "/category/comics", title: "Comics" },
-  { href: "/category/series", title: "Series" },
+  { href: "/home/category/characters", title: "Personajes" },
+  { href: "/home/category/comics", title: "Comics" },
+  { href: "/home/category/series", title: "Series" },
 ];
 
 export default function Home() {

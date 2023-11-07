@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import Main from "../components/main";
+import Main from "../../components/main";
 import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {

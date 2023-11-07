@@ -1,5 +1,5 @@
-import AsideBar from "../components/asideBar";
-import NavBar from "../components/navBar";
+import AsideBar from "../../components/asideBar";
+import NavBar from "../../components/navBar";
 
 const LayoutHome = ({ children, params }) => {
   const category = params.category[1]

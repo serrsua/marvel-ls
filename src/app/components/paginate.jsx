@@ -17,7 +17,7 @@ const Paginate = ({ category, total }) => {
     buttons.push(
       <Link
         key={i}
-        href={`/category/${category}?offset=${offset}`}
+        href={`/home/category/${category}?offset=${offset}`}
         onClick={() => setActualPage(i)}
         className={`${
           actualPage === i ? "bg-red-400" : "bg-red-200"
