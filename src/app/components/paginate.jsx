@@ -14,9 +14,9 @@ const Paginate = ({ category, total }) => {
   for (let i = 1; i <= 5; i++) {
     if (i !== 1) offset += 20;
 
-
     buttons.push(
       <Link
+        key={i}
         href={`/category/${category}?offset=${offset}`}
         onClick={() => setActualPage(i)}
         className={`${
