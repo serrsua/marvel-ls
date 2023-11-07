@@ -29,7 +29,7 @@ const CategoryPage = async ({ params, searchParams }) => {
           ? "Todas las Series de Marvel"
           : `Todos los ${es} de Marvel`}
       </h2>
-      <Main data={filteredData} category={category} />
+      <Main data={filteredData} total={data.total} category={category} />
     </section>
   );
 };
