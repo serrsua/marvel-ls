@@ -4,7 +4,7 @@ import Main from "../components/main";
 import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { es, offset } = searchParams;
+  const { offset } = searchParams;
   const category = params.category[1];
 
   const getData = async (offset = 0) => {
@@ -25,9 +25,9 @@ const CategoryPage = async ({ params, searchParams }) => {
   return (
     <section>
       <h2>
-        {es === "Series"
-          ? "Todas las Series de Marvel"
-          : `Todos los ${es} de Marvel`}
+        {category === "characters" && `Todos los Personajes de Marvel`}
+        {category === "comics" && `Todos los Comics de Marvel`}
+        {category === "series" && `Todas Las Series de Marvel`}
       </h2>
       <Main data={filteredData} total={data.total} category={category} />
     </section>
