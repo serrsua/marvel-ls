@@ -14,12 +14,12 @@ const CategoryPage = async ({ params, searchParams }) => {
       )
     ).data.data;
     return data;
-  }
+  };
 
   const data = await getData(offset);
 
   //filtra datos dependiendo de la categoria
-  const filteredData = Filter(category, data)
+  const filteredData = Filter(category, data);
 
   return (
     <section>
