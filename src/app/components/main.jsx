@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Paginate from "./paginate";
+import Link from "next/link";
 
-const Main = ({ data, category, total }) => {
-  console.log(category);
+const Main = ({ data, category, total, offset }) => {
   return (
     <div className="flex flex-col flex-wrap gap-5 items-center m-5">
       <Paginate category={category} total={total} />
       <div className="flex flex-wrap justify-evenly items-center gap-2">
         {data.map((obj) => (
-          <div
+          <Link
+            href={`/detail/${obj.id}?category=${category}&offset=${offset}`}
             key={obj.id}
             className="p-2 bg-orange-300 h-fit overflow-hidden rounded-lg w-52 hover:bg-orange-400"
           >
@@ -23,7 +24,7 @@ const Main = ({ data, category, total }) => {
                 alt={`image of ${obj.name}`}
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
