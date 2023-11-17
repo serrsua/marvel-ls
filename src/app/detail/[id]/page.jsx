@@ -5,8 +5,6 @@ const Detail = async ({ params, searchParams }) => {
   const { id } = params;
   const { category, offset } = searchParams;
 
-  console.log("SP: ",searchParams);
-
   const { data } = await axios(
     `https://gateway.marvel.com:443/v1/public/${category}/${id}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
   );
