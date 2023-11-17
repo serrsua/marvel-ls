@@ -5,7 +5,7 @@ import Link from "next/link";
 const Main = ({ data, category, total, offset }) => {
   return (
     <div className="flex flex-col flex-wrap gap-5 items-center m-5">
-      <Paginate category={category} total={total} />
+      <Paginate category={category} total={total} offset={offset} />
       <div className="flex flex-wrap justify-evenly items-center gap-2">
         {data.map((obj) => (
           <Link
