@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const Paginate = ({ category, total, offset }) => {
   const [actualPage, setActualPage] = useState(1);
 
-  console.log(offset);
   useEffect(() => {
     if (offset) {
       setActualPage(offset / 20 + 1);
@@ -18,6 +17,7 @@ const Paginate = ({ category, total, offset }) => {
 
   const startPage = Math.max(1, actualPage - Math.floor(buttonsToShow / 2));
   const endPage = Math.min(totalPages, startPage + buttonsToShow - 1);
+  const lastPage = totalPages * 20 - 20;
 
   const buttons = [];
 
@@ -38,14 +38,27 @@ const Paginate = ({ category, total, offset }) => {
     );
   }
 
+  console.log("actual", actualPage);
+  console.log("total", totalPages);
+
   return (
     <div className="flex items-start gap-5 flex-wrap">
-      <Link href={`/home/category/${category}?offset=${offset - 20}`}>
-        {"<"}
-      </Link>
+      <Link href={`/home/category/${category}?offset=0`}>First Page</Link>
+      {actualPage > 1 && (
+        <Link href={`/home/category/${category}?offset=${offset - 20}`}>
+          {"<"}
+        </Link>
+      )}
       {buttons}
-      <Link href={`/home/category/${category}?offset=${parseInt(offset) + 20}`}>
-        {">"}
+      {actualPage >= totalPages ? null : (
+        <Link
+          href={`/home/category/${category}?offset=${parseInt(offset) + 20}`}
+        >
+          {">"}
+        </Link>
+      )}
+      <Link href={`/home/category/${category}?offset=${lastPage}`}>
+        Last Page
       </Link>
     </div>
   );
