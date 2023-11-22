@@ -18,7 +18,7 @@ export default function Home() {
           >
             <Link
               className="rounded-lg bg-red-400 h-4/5 w-4/5"
-              href={`${route.href}`}
+              href={`${route.href}?offset=0`}
             >
               {route.title}
             </Link>

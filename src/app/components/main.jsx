@@ -21,6 +21,7 @@ const Main = ({ data, category, total, offset }) => {
                 className=" rounded-xl mx-auto"
                 src={obj.image}
                 fill={true}
+                sizes="33vw"
                 alt={`image of ${obj.name}`}
               />
             </div>
