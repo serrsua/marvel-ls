@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const data = [
-  { href: "/home/category/characters", title: "Personajes" },
-  { href: "/home/category/comics", title: "Comics" },
-  { href: "/home/category/series", title: "Series" },
+  { href: "/home/category/characters", title: "Personajes", img: "/assets/personajes.png" },
+  { href: "/home/category/comics", title: "Comics", img: "/assets/comics.png" },
+  { href: "/home/category/series", title: "Series", img: "/assets/series.png" },
 ];
 
 export default function Home() {
@@ -17,10 +18,12 @@ export default function Home() {
             key={i}
           >
             <Link
-              className="rounded-lg bg-red-400 h-4/5 w-4/5"
+              className=" flex justify-center items-center relative rounded-lg bg-red-400 h-4/5 w-4/5"
               href={`${route.href}?offset=0`}
             >
-              {route.title}
+              <Image sizes="100vw" fill={true} src={route.img} />
+              <h2 className=" absolute bg-white text-black text-4xl" >{route.title}</h2>
+
             </Link>
           </div>
         ))}
