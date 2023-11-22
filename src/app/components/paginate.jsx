@@ -38,9 +38,6 @@ const Paginate = ({ category, total, offset }) => {
     );
   }
 
-  console.log("actual", actualPage);
-  console.log("total", totalPages);
-
   return (
     <div className="flex items-start gap-5 flex-wrap">
       <Link href={`/home/category/${category}?offset=0`}>First Page</Link>
