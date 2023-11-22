@@ -9,34 +9,46 @@ const Paginate = ({ category, total, offset }) => {
   console.log(offset);
   useEffect(() => {
     if (offset) {
-      console.log("dentro del if");
       setActualPage(offset / 20 + 1);
     }
-  }, []);
+  }, [offset]);
 
   const totalPages = Math.ceil(total / 20);
+  const buttonsToShow = 5;
+
+  const startPage = Math.max(1, actualPage - Math.floor(buttonsToShow / 2));
+  const endPage = Math.min(totalPages, startPage + buttonsToShow - 1);
 
   const buttons = [];
-  let offset2 = 0;
 
-  for (let i = 1; i <= 5; i++) {
-    if (i !== 1) offset2 += 20;
+  for (let i = startPage; i <= endPage; i++) {
+    const offset = (i - 1) * 20;
 
     buttons.push(
       <Link
         key={i}
-        href={`/home/category/${category}?offset=${offset2}`}
+        href={`/home/category/${category}?offset=${offset}`}
         onClick={() => setActualPage(i)}
         className={`${
           actualPage === i ? "bg-red-400" : "bg-red-200"
-        } px-1 py-2`}
+        } px-2 py-1`}
       >
         {i}
       </Link>
     );
   }
 
-  return <div className=" flex items-start gap-5">{buttons}</div>;
+  return (
+    <div className="flex items-start gap-5 flex-wrap">
+      <Link href={`/home/category/${category}?offset=${offset - 20}`}>
+        {"<"}
+      </Link>
+      {buttons}
+      <Link href={`/home/category/${category}?offset=${parseInt(offset) + 20}`}>
+        {">"}
+      </Link>
+    </div>
+  );
 };
 
 export default Paginate;
