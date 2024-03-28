@@ -23,11 +23,11 @@ const CategoryPage = async ({ params, searchParams }) => {
   const filteredData = Filter(category, data);
 
   return (
-    <section>
-      <h2>
-        {category === "characters" && `Todos los Personajes de Marvel`}
-        {category === "comics" && `Todos los Comics de Marvel`}
-        {category === "series" && `Todas Las Series de Marvel`}
+    <section className="bg-teal-50 py-5" > 
+      <h2 className=" font-bold text-2xl text-center">
+        {category === "characters" && `Personajes de Marvel`}
+        {category === "comics" && `Comics de Marvel`}
+        {category === "series" && `Series de Marvel`}
       </h2>
       <Main data={filteredData} total={data.total} category={category} offset={offset} />
     </section>

@@ -5,9 +5,9 @@ const LayoutHome = ({ children, params }) => {
   const category = params.category[1]
 
   return (
-    <section className="grid grid-cols-[20%,80%] grid-rows-[70px, auto]">
+    <section className="">
       <NavBar title={category} />
-      <AsideBar />
+      {/* <AsideBar /> */}
       {children}
     </section>
   );

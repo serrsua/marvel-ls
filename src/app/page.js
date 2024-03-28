@@ -9,8 +9,8 @@ const data = [
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center">
-      <h1 className=" text-4xl font-bold mt-10">Mundo Marvel</h1>
+    <main className="flex flex-col items-center bg-black bg-opacity-90">
+      <h1 className=" text-4xl font-bold mt-10 text-white">Mundo Marvel</h1>
       <div className="flex flex-col gap-5 m-10 w-full items-center">
         {data.map((route, i) => (
           <div

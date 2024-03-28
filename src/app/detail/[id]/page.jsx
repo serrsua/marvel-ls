@@ -14,8 +14,8 @@ const Detail = async ({ params, searchParams }) => {
     data.data.results[0];
 
   return (
-    <section>
-      <div className="flex flex-col items-center gap-3 mt-4 mx-2">
+    <section className="bg-teal-50">
+      <div className="flex flex-col items-center gap-3 py-5 mx-2">
         <Link
           href={`/home/category/${category}?offset=${offset}`}
           className="bg-orange-300 px-2 py-1 rounded-lg text-lg font-bold border border-gray-300"
@@ -33,7 +33,7 @@ const Detail = async ({ params, searchParams }) => {
           className="rounded-md border border-gray-500 border-opacity-30 w-[90%] h-fit"
         />
 
-        <div className={"bg-green-300 bg-opacity-40 rounded-2xl p-2 flex flex-col gap-5"}>
+        <div className={"bg-green-300 bg-opacity-40 rounded-2xl p-2 flex flex-col gap-5 w-[90%]"}>
           <ul>
             <h6 className="font-bold" >{comics?.items?.length ? "Comics" : null}</h6>
             {comics?.items?.map((comic, i) => (

@@ -30,8 +30,8 @@ const Paginate = ({ category, total, offset }) => {
         href={`/home/category/${category}?offset=${offset}`}
         onClick={() => setActualPage(i)}
         className={`${
-          actualPage === i ? "bg-red-400" : "bg-red-200"
-        } px-2 py-1`}
+          actualPage === i ? "bg-green-400" : "bg-white"
+        } px-2 py-1 border border-gray-400 rounded-md`}
       >
         {i}
       </Link>
@@ -39,23 +39,32 @@ const Paginate = ({ category, total, offset }) => {
   }
 
   return (
-    <div className="flex items-start gap-5 flex-wrap">
-      <Link href={`/home/category/${category}?offset=0`}>First Page</Link>
+    <div className="flex gap-3 flex-wrap items-center">
+      <Link className=" text-sm" href={`/home/category/${category}?offset=0`}>
+        First
+      </Link>
       {actualPage > 1 && (
-        <Link href={`/home/category/${category}?offset=${offset - 20}`}>
+        <Link
+          className=" text-sm"
+          href={`/home/category/${category}?offset=${offset - 20}`}
+        >
           {"<"}
         </Link>
       )}
       {buttons}
       {actualPage >= totalPages ? null : (
         <Link
+          className=" text-sm"
           href={`/home/category/${category}?offset=${parseInt(offset) + 20}`}
         >
           {">"}
         </Link>
       )}
-      <Link href={`/home/category/${category}?offset=${lastPage}`}>
-        Last Page
+      <Link
+        className=" text-sm"
+        href={`/home/category/${category}?offset=${lastPage}`}
+      >
+        Last
       </Link>
     </div>
   );
