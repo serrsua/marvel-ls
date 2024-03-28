@@ -1,8 +1,8 @@
 const Loading = () => {
     return (
-      <div className="bg-white flex flex-col items-center">
+      <div className="bg-teal-50 grid place-items-center mt-[20%] font-bold text-3xl">
         <p>CARGANDO...</p>
-        <div className="loader w-1/4"/>
+        <div className="loader"/>
       </div>
     );
   };
