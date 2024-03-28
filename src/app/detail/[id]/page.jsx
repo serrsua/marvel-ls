@@ -15,26 +15,27 @@ const Detail = async ({ params, searchParams }) => {
 
   return (
     <section>
-      <div className="flex flex-col items-center gap-3 mt-4">
+      <div className="flex flex-col items-center gap-3 mt-4 mx-2">
         <Link
           href={`/home/category/${category}?offset=${offset}`}
-          className="bg-orange-400 px-2 py-1 rounded-lg"
+          className="bg-orange-300 px-2 py-1 rounded-lg text-lg font-bold border border-gray-300"
         >
           Volver
         </Link>
-        <h2 className="text-4xl font-bold">{`${name ?? title}`}</h2>
-        <p className="p-3 text-center bg-orange-300 bg-opacity-40 rounded-2xl">{`${description}`}</p>
-        <div className="relative w-[90%] h-[300px]">
-          <Image
-            src={`${thumbnail.path}.${thumbnail.extension}`}
-            alt="imagen del personaje"
-            fill={true}
-            className="rounded-md"
-          />
-        </div>
-        <div className=" bg-green-300 bg-opacity-40 rounded-2xl p-2">
+        <h2 className="text-4xl font-bold text-center">{`${name ?? title}`}</h2>
+        {description && (
+          <p className="p-3 text-center bg-orange-300 bg-opacity-40 rounded-2xl">{`${description}`}</p>
+        )}
+
+        <img
+          src={`${thumbnail.path}.${thumbnail.extension}`}
+          alt="imagen del personaje"
+          className="rounded-md border border-gray-500 border-opacity-30 w-[90%] h-fit"
+        />
+
+        <div className={"bg-green-300 bg-opacity-40 rounded-2xl p-2 flex flex-col gap-5"}>
           <ul>
-            <h6>{comics?.items?.length ? "Comics:" : null}</h6>
+            <h6 className="font-bold" >{comics?.items?.length ? "Comics" : null}</h6>
             {comics?.items?.map((comic, i) => (
               <li className="ml-3" key={i}>
                 {comic.name}
@@ -42,7 +43,7 @@ const Detail = async ({ params, searchParams }) => {
             ))}
           </ul>
           <ul>
-            <h6>{series?.items?.length ? "Series:" : null}</h6>
+            <h6 className="font-bold">{series?.items?.length ? "Series" : null}</h6>
             {series?.items?.map((serie, i) => (
               <li className="ml-3" key={i}>
                 {serie.name}
@@ -50,7 +51,7 @@ const Detail = async ({ params, searchParams }) => {
             ))}
           </ul>
           <ul>
-            <h6>{characters?.items?.length ? "Personajes:" : null}</h6>
+            <h6 className="font-bold">{characters?.items?.length ? "Personajes" : null}</h6>
             {characters?.items?.map((character, i) => (
               <li className="ml-3" key={i}>
                 {character.name}

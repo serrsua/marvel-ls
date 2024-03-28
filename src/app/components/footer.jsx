@@ -1,8 +1,8 @@
 
 export default function Footer() {
     return (
-      <footer className=" bg-gray-500 h-32">
-        <small>Pagina hecha por ls xD</small>
+      <footer className="bg-gray-800 h-32 flex justify-center pt-5 mt-4">
+        <small className=" text-white">Desarrolado por LS-Fun</small>
       </footer>
     )
   }
