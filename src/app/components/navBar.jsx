@@ -1,6 +1,5 @@
 import Link from "next/link";
 import InputSearch from "./inputSearch";
-import Search from "../../../public/icons/Search";
 
 const NavBar = () => {
   return (
@@ -8,7 +7,6 @@ const NavBar = () => {
       <Link className="px-8" href={"/"}>Volver</Link>
       <div className="w-full flex items-center gap-2">
         <InputSearch />
-        <Search />
       </div>
     </nav>
   );
