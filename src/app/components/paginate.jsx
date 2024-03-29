@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const Paginate = ({ category, total, offset }) => {
+const Paginate = ({ category, total, offset, name }) => {
   const [actualPage, setActualPage] = useState(1);
 
   useEffect(() => {
@@ -27,7 +27,11 @@ const Paginate = ({ category, total, offset }) => {
     buttons.push(
       <Link
         key={i}
-        href={`/home/category/${category}?offset=${offset}`}
+        href={
+          !name
+            ? `/home/category/${category}?offset=${offset}`
+            : `/home/category/${category}?offset=${offset}&nameStartsWith=${name}`
+        }
         onClick={() => setActualPage(i)}
         className={`${
           actualPage === i ? "bg-green-400" : "bg-white"
@@ -40,13 +44,26 @@ const Paginate = ({ category, total, offset }) => {
 
   return (
     <div className="flex gap-3 flex-wrap items-center">
-      <Link className=" text-sm" href={`/home/category/${category}?offset=0`}>
+      <Link
+        className=" text-sm"
+        href={
+          !name
+            ? `/home/category/${category}?offset=0`
+            : `/home/category/${category}?offset=0&nameStartsWith=${name}`
+        }
+      >
         First
       </Link>
       {actualPage > 1 && (
         <Link
           className=" text-sm"
-          href={`/home/category/${category}?offset=${offset - 20}`}
+          href={
+            !name
+              ? `/home/category/${category}?offset=${offset - 20}`
+              : `/home/category/${category}?offset=${
+                  offset - 20
+                }&nameStartsWith=${name}`
+          }
         >
           {"<"}
         </Link>
@@ -55,14 +72,24 @@ const Paginate = ({ category, total, offset }) => {
       {actualPage >= totalPages ? null : (
         <Link
           className=" text-sm"
-          href={`/home/category/${category}?offset=${parseInt(offset) + 20}`}
+          href={
+            !name
+              ? `/home/category/${category}?offset=${offset + 20}`
+              : `/home/category/${category}?offset=${
+                  offset + 20
+                }&nameStartsWith=${name}`
+          }
         >
           {">"}
         </Link>
       )}
       <Link
         className=" text-sm"
-        href={`/home/category/${category}?offset=${lastPage}`}
+        href={
+          !name
+            ? `/home/category/${category}?offset=${lastPage}`
+            : `/home/category/${category}?offset=${lastPage}&nameStartsWith=${name}`
+        }
       >
         Last
       </Link>

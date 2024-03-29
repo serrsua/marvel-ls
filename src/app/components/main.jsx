@@ -2,10 +2,10 @@ import Image from "next/image";
 import Paginate from "./paginate";
 import Link from "next/link";
 
-const Main = ({ data, category, total, offset }) => {
+const Main = ({ data, category, total, offset, name }) => {
   return (
     <div className="flex flex-col flex-wrap gap-5 items-center mt-5 mx-5">
-      <Paginate category={category} total={total} offset={offset} />
+      <Paginate category={category} total={total} offset={offset} name={name} />
       <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {data.map((obj) => (
           <Link

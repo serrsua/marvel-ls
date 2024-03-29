@@ -3,6 +3,7 @@ import NavBar from "../../components/navBar";
 
 const LayoutHome = ({ children, params }) => {
   const category = params.category[1]
+  // const { offset } = searchParams
 
   return (
     <section className="">

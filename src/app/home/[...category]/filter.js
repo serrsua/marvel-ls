@@ -16,7 +16,7 @@ const Filter = (category, data) => {
     filteredData = data.results.map((object) => {
       return {
         id: object.id,
-        title: object.title,
+        name: object.title,
         description: object.description ?? "No tiene descripcion",
         image: `${object.thumbnail.path}.${object.thumbnail.extension}`,
         characters:

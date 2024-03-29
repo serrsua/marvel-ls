@@ -4,15 +4,26 @@ import Main from "../../components/main";
 import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { offset } = searchParams;
+  const { offset, nameStartsWith } = searchParams;
   const category = params.category[1];
 
   const getData = async (offset = 0) => {
-    const data = (
-      await axios.get(
-        `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}`
-      )
-    ).data.data;
+    let data;
+    if (!nameStartsWith) {
+      console.log("sin name");
+      data = (
+        await axios.get(
+          `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}`
+        )
+      ).data.data;
+    } else {
+      data = (
+        await axios.get(
+          `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}&nameStartsWith=${nameStartsWith}`
+        )
+      ).data.data;
+    }
+
     return data;
   };
 
@@ -23,13 +34,19 @@ const CategoryPage = async ({ params, searchParams }) => {
   const filteredData = Filter(category, data);
 
   return (
-    <section className="bg-teal-50 py-5" > 
+    <section className="bg-teal-50 py-5">
       <h2 className=" font-bold text-2xl text-center">
         {category === "characters" && `Personajes de Marvel`}
         {category === "comics" && `Comics de Marvel`}
         {category === "series" && `Series de Marvel`}
       </h2>
-      <Main data={filteredData} total={data.total} category={category} offset={offset} />
+      <Main
+        name={nameStartsWith}
+        data={filteredData}
+        total={data.total}
+        category={category}
+        offset={offset}
+      />
     </section>
   );
 };
