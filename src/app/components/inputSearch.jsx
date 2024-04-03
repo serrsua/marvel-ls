@@ -16,11 +16,11 @@ export default function InputSearch({ category }) {
   const sendQuery = () => {
     if (category === "characters") {
       router.push(
-        `/home/category/${category}?offset=0&nameStartsWith=${string}`
+        `/home/${category}?offset=0&nameStartsWith=${string}`
       );
     } else {
       router.push(
-        `/home/category/${category}?offset=0&titleStartsWith=${string}`
+        `/home/${category}?offset=0&titleStartsWith=${string}`
       );
     }
 

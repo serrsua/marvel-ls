@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 const data = [
-  { href: "/home/category/characters", title: "Personajes", img: "/assets/personajes.webp" },
-  { href: "/home/category/comics", title: "Comics", img: "/assets/comics.webp" },
-  { href: "/home/category/series", title: "Series", img: "/assets/series.webp" },
+  { href: "/home/characters", title: "Personajes", img: "/assets/personajes.webp" },
+  { href: "/home/comics", title: "Comics", img: "/assets/comics.webp" },
+  { href: "/home/series", title: "Series", img: "/assets/series.webp" },
 ];
 
 export default function Home() {

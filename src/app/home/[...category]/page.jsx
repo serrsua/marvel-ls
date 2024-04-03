@@ -5,7 +5,7 @@ import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
   const { offset, nameStartsWith, titleStartsWith } = searchParams;
-  const category = params.category[1];
+  const category = params.category[0];
 
   const getData = async (offset = 0) => {
     let data;
