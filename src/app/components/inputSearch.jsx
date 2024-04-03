@@ -26,22 +26,21 @@ export default function InputSearch({ category }) {
 
     setString("");
   };
-  //setear offset en 0
-  //crear funcion para boton search
-  //mandar query
 
   return (
-    <>
+    <div className="flex gap-2 items-center mr-5">
       <input
-        className="w-[150px] lg:w-[200px] px-2 py-1 text-black"
+        className="w-[100px] md:w-[200px] px-2 py-1 text-black"
+        autoComplete="off"
         type="text"
         name="name"
         id=""
         placeholder="Buscar por nombre..."
+        title="Buscar por nombre..."
         value={string}
         onChange={handleOfChange}
       />
       <Search sendQuery={sendQuery} />
-    </>
+    </div>
   );
 }
