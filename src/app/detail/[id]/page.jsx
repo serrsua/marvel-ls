@@ -1,3 +1,4 @@
+import ButtonDetail from "@/app/components/buttonDetail";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,12 +17,7 @@ const Detail = async ({ params, searchParams }) => {
   return (
     <section className="bg-teal-50">
       <div className="flex flex-col items-center gap-3 py-5 mx-2 lg:grid lg:grid-cols-2 lg:place-items-center">
-        <Link
-          href={`/home/category/${category}?offset=${offset}`}
-          className="bg-orange-300 px-2 py-1 rounded-lg text-lg font-bold border border-gray-300 lg:col-span-2"
-        >
-          Volver
-        </Link>
+        <ButtonDetail/>
         <h2 className="text-4xl font-bold text-center lg:hidden">{`${
           name ?? title
         }`}</h2>

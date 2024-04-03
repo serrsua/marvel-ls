@@ -4,13 +4,12 @@ import Main from "../../components/main";
 import Filter from "./filter";
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { offset, nameStartsWith } = searchParams;
+  const { offset, nameStartsWith, titleStartsWith } = searchParams;
   const category = params.category[1];
 
   const getData = async (offset = 0) => {
     let data;
-    if (!nameStartsWith) {
-      console.log("sin name");
+    if (!nameStartsWith && !titleStartsWith) {
       data = (
         await axios.get(
           `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}`
@@ -19,7 +18,13 @@ const CategoryPage = async ({ params, searchParams }) => {
     } else {
       data = (
         await axios.get(
-          `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}&offset=${offset}&nameStartsWith=${nameStartsWith}`
+          `https://gateway.marvel.com:443/v1/public/${category}?ts=1&apikey=${
+            process.env.API_KEY
+          }&hash=${process.env.HASH}&offset=${offset}&${
+            nameStartsWith
+              ? `nameStartsWith=${nameStartsWith}`
+              : `titleStartsWith=${titleStartsWith}`
+          }`
         )
       ).data.data;
     }
@@ -41,7 +46,7 @@ const CategoryPage = async ({ params, searchParams }) => {
         {category === "series" && `Series de Marvel`}
       </h2>
       <Main
-        name={nameStartsWith}
+        name={nameStartsWith ?? titleStartsWith}
         data={filteredData}
         total={data.total}
         category={category}

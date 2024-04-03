@@ -1,4 +1,4 @@
-export default function Search() {
+export default function Search({sendQuery}) {
   return (
     <svg
       className=" cursor-pointer"
@@ -9,6 +9,7 @@ export default function Search() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="white"
+      onClick={sendQuery}
     >
       <path
         strokeLinecap="round"

@@ -30,7 +30,11 @@ const Paginate = ({ category, total, offset, name }) => {
         href={
           !name
             ? `/home/category/${category}?offset=${offset}`
-            : `/home/category/${category}?offset=${offset}&nameStartsWith=${name}`
+            : `/home/category/${category}?offset=${offset}&${
+                category === "characters"
+                  ? `nameStartsWith=${name}`
+                  : `titleStartsWith=${name}`
+              }`
         }
         onClick={() => setActualPage(i)}
         className={`${
@@ -49,7 +53,11 @@ const Paginate = ({ category, total, offset, name }) => {
         href={
           !name
             ? `/home/category/${category}?offset=0`
-            : `/home/category/${category}?offset=0&nameStartsWith=${name}`
+            : `/home/category/${category}?offset=0&${
+                category === "characters"
+                  ? `nameStartsWith=${name}`
+                  : `titleStartsWith=${name}`
+              }`
         }
       >
         First
@@ -60,9 +68,11 @@ const Paginate = ({ category, total, offset, name }) => {
           href={
             !name
               ? `/home/category/${category}?offset=${offset - 20}`
-              : `/home/category/${category}?offset=${
-                  offset - 20
-                }&nameStartsWith=${name}`
+              : `/home/category/${category}?offset=${offset - 20}&${
+                  category === "characters"
+                    ? `nameStartsWith=${name}`
+                    : `titleStartsWith=${name}`
+                }`
           }
         >
           {"<"}
@@ -75,9 +85,11 @@ const Paginate = ({ category, total, offset, name }) => {
           href={
             !name
               ? `/home/category/${category}?offset=${offset + 20}`
-              : `/home/category/${category}?offset=${
-                  offset + 20
-                }&nameStartsWith=${name}`
+              : `/home/category/${category}?offset=${offset + 20}&${
+                  category === "characters"
+                    ? `nameStartsWith=${name}`
+                    : `titleStartsWith=${name}`
+                }`
           }
         >
           {">"}
@@ -88,7 +100,11 @@ const Paginate = ({ category, total, offset, name }) => {
         href={
           !name
             ? `/home/category/${category}?offset=${lastPage}`
-            : `/home/category/${category}?offset=${lastPage}&nameStartsWith=${name}`
+            : `/home/category/${category}?offset=${lastPage}&${
+                category === "characters"
+                  ? `nameStartsWith=${name}`
+                  : `titleStartsWith=${name}`
+              }`
         }
       >
         Last
