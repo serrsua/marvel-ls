@@ -29,8 +29,8 @@ const Paginate = ({ category, total, offset, name }) => {
         key={i}
         href={
           !name
-            ? `/home/category/${category}?offset=${offset}`
-            : `/home/category/${category}?offset=${offset}&${
+            ? `/home/${category}?offset=${offset}`
+            : `/home/${category}?offset=${offset}&${
                 category === "characters"
                   ? `nameStartsWith=${name}`
                   : `titleStartsWith=${name}`
@@ -52,8 +52,8 @@ const Paginate = ({ category, total, offset, name }) => {
         className=" text-sm"
         href={
           !name
-            ? `/home/category/${category}?offset=0`
-            : `/home/category/${category}?offset=0&${
+            ? `/home/${category}?offset=0`
+            : `/home/${category}?offset=0&${
                 category === "characters"
                   ? `nameStartsWith=${name}`
                   : `titleStartsWith=${name}`
@@ -67,8 +67,8 @@ const Paginate = ({ category, total, offset, name }) => {
           className=" text-sm"
           href={
             !name
-              ? `/home/category/${category}?offset=${offset - 20}`
-              : `/home/category/${category}?offset=${offset - 20}&${
+              ? `/home/${category}?offset=${offset - 20}`
+              : `/home/${category}?offset=${offset - 20}&${
                   category === "characters"
                     ? `nameStartsWith=${name}`
                     : `titleStartsWith=${name}`
@@ -84,8 +84,8 @@ const Paginate = ({ category, total, offset, name }) => {
           className=" text-sm"
           href={
             !name
-              ? `/home/category/${category}?offset=${parseInt(offset) + 20}`
-              : `/home/category/${category}?offset=${parseInt(offset) + 20}&${
+              ? `/home/${category}?offset=${parseInt(offset) + 20}`
+              : `/home/${category}?offset=${parseInt(offset) + 20}&${
                   category === "characters"
                     ? `nameStartsWith=${name}`
                     : `titleStartsWith=${name}`
@@ -99,8 +99,8 @@ const Paginate = ({ category, total, offset, name }) => {
         className=" text-sm"
         href={
           !name
-            ? `/home/category/${category}?offset=${lastPage}`
-            : `/home/category/${category}?offset=${lastPage}&${
+            ? `/home/${category}?offset=${lastPage}`
+            : `/home/${category}?offset=${lastPage}&${
                 category === "characters"
                   ? `nameStartsWith=${name}`
                   : `titleStartsWith=${name}`
