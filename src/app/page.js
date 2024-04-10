@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const data = [
   {
-    href: "/home/characters",
+    href: "/characters",
     title: "Personajes",
     img: "/assets/personajes.webp",
   },
-  { href: "/home/comics", title: "Comics", img: "/assets/comics.webp" },
-  { href: "/home/series", title: "Series", img: "/assets/series.webp" },
+  { href: "/comics", title: "Comics", img: "/assets/comics.webp" },
+  { href: "/series", title: "Series", img: "/assets/series.webp" },
 ];
 
 export default function Home() {
