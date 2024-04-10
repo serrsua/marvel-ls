@@ -1,18 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
-const Paginate = ({ category, total, offset, name }) => {
-  const [actualPage, setActualPage] = useState(1);
+const Paginate = ({ totalPages }) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    if (offset) {
-      setActualPage(offset / 20 + 1);
-    }
-  }, [offset]);
+  const offset = Number(searchParams.get("offset")) || 0;
+  const actualPage = offset / 20 + 1 //calculo la pagina actual
 
-  const totalPages = Math.ceil(total / 20);
   const buttonsToShow = 5;
 
   const startPage = Math.max(1, actualPage - Math.floor(buttonsToShow / 2));
@@ -21,25 +18,25 @@ const Paginate = ({ category, total, offset, name }) => {
 
   const buttons = [];
 
+  const createPageUrl = (offset) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("offset", offset);
+
+    return `${pathname}?${params.toString()}`;
+  };
+
   for (let i = startPage; i <= endPage; i++) {
     const offset = (i - 1) * 20;
 
     buttons.push(
       <Link
         key={i}
-        href={
-          !name
-            ? `/home/${category}?offset=${offset}`
-            : `/home/${category}?offset=${offset}&${
-                category === "characters"
-                  ? `nameStartsWith=${name}`
-                  : `titleStartsWith=${name}`
-              }`
-        }
-        onClick={() => setActualPage(i)}
+        href={createPageUrl(offset)}
         className={`${
-          actualPage === i ? "bg-green-400" : "bg-white"
-        } px-2 py-1 border border-gray-400 rounded-md`}
+          actualPage === i
+            ? "bg-green-400"
+            : "bg-teal-50"
+        } px-2 py-1 transition-all hover:bg-green-500`}
       >
         {i}
       </Link>
@@ -47,66 +44,24 @@ const Paginate = ({ category, total, offset, name }) => {
   }
 
   return (
-    <div className="flex gap-3 flex-wrap items-center">
-      <Link
-        className=" text-sm"
-        href={
-          !name
-            ? `/home/${category}?offset=0`
-            : `/home/${category}?offset=0&${
-                category === "characters"
-                  ? `nameStartsWith=${name}`
-                  : `titleStartsWith=${name}`
-              }`
-        }
-      >
+    <div className="flex gap-2 flex-wrap items-center my-2">
+      <Link className=" text-sm" href={createPageUrl("0")}>
         First
       </Link>
       {actualPage > 1 && (
-        <Link
-          className=" text-sm"
-          href={
-            !name
-              ? `/home/${category}?offset=${offset - 20}`
-              : `/home/${category}?offset=${offset - 20}&${
-                  category === "characters"
-                    ? `nameStartsWith=${name}`
-                    : `titleStartsWith=${name}`
-                }`
-          }
-        >
+        <Link className=" text-sm" href={createPageUrl(offset - 20)}>
           {"<"}
         </Link>
       )}
-      {buttons}
+      <div className=" border border-gray-200 p-0.5 h-fit flex items-center">
+        {buttons}
+      </div>
       {actualPage >= totalPages ? null : (
-        <Link
-          className=" text-sm"
-          href={
-            !name
-              ? `/home/${category}?offset=${parseInt(offset) + 20}`
-              : `/home/${category}?offset=${parseInt(offset) + 20}&${
-                  category === "characters"
-                    ? `nameStartsWith=${name}`
-                    : `titleStartsWith=${name}`
-                }`
-          }
-        >
+        <Link className=" text-sm" href={createPageUrl(offset + 20)}>
           {">"}
         </Link>
       )}
-      <Link
-        className=" text-sm"
-        href={
-          !name
-            ? `/home/${category}?offset=${lastPage}`
-            : `/home/${category}?offset=${lastPage}&${
-                category === "characters"
-                  ? `nameStartsWith=${name}`
-                  : `titleStartsWith=${name}`
-              }`
-        }
-      >
+      <Link className=" text-sm" href={createPageUrl(lastPage)}>
         Last
       </Link>
     </div>
