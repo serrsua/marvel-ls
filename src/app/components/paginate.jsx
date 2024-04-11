@@ -8,7 +8,7 @@ const Paginate = ({ totalPages }) => {
   const pathname = usePathname();
 
   const offset = Number(searchParams.get("offset")) || 0;
-  const actualPage = offset / 20 + 1 //calculo la pagina actual
+  const actualPage = offset / 20 + 1; //calculo la pagina actual
 
   const buttonsToShow = 5;
 
@@ -19,6 +19,7 @@ const Paginate = ({ totalPages }) => {
   const buttons = [];
 
   const createPageUrl = (offset) => {
+    if (offset > lastPage) offset = lastPage;
     const params = new URLSearchParams(searchParams);
     params.set("offset", offset);
 
@@ -33,9 +34,7 @@ const Paginate = ({ totalPages }) => {
         key={i}
         href={createPageUrl(offset)}
         className={`${
-          actualPage === i
-            ? "bg-green-400"
-            : "bg-teal-50"
+          actualPage === i ? "bg-green-400" : "bg-teal-50"
         } px-2 py-1 transition-all hover:bg-green-500`}
       >
         {i}
@@ -53,6 +52,16 @@ const Paginate = ({ totalPages }) => {
           {"<"}
         </Link>
       )}
+      {actualPage > 10 && (
+        <Link className=" text-sm" href={createPageUrl(offset - 200)}>
+          10...
+        </Link>
+      )}
+      {actualPage > 50 && (
+        <Link className=" text-sm" href={createPageUrl(offset - 1000)}>
+          50...
+        </Link>
+      )}
       <div className=" border border-gray-200 p-0.5 h-fit flex items-center">
         {buttons}
       </div>
@@ -61,6 +70,17 @@ const Paginate = ({ totalPages }) => {
           {">"}
         </Link>
       )}
+      {actualPage >= totalPages ? null : (
+        <>
+          <Link className=" text-sm" href={createPageUrl(offset + 200)}>
+            ...10
+          </Link>
+          <Link className=" text-sm" href={createPageUrl(offset + 1000)}>
+            ...50
+          </Link>
+        </>
+      )}
+
       <Link className=" text-sm" href={createPageUrl(lastPage)}>
         Last
       </Link>

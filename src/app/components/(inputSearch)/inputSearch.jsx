@@ -8,7 +8,7 @@ export default function InputSearch() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const TIME_BETWEEN_SEARCH = 500
+  const TIME_BETWEEN_SEARCH = 400;
 
   const handleOnChange = useDebouncedCallback((search) => {
     const params = new URLSearchParams(searchParams);
