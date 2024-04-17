@@ -1,8 +1,8 @@
-import { Inter } from "next/font/google";
+import { Orbitron } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Orbitron({ subsets: ["latin"], weight: ["400","500","600","700"] });
 
 export const metadata = {
   title: "Mundo Marvel",
