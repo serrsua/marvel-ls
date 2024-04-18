@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 export default function ButtonDetail() {
   const router = useRouter();
 
-  const handleOnClick = () => {
-    router.back();
-  };
+  const handleOnClick = () => router.back();
 
   return (
     <div

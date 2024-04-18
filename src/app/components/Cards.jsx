@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { func } from "../api/func";
 
+const { BASE64 } = process.env
+
 const Cards = async ({ searchParams, category }) => {
   const { offset, search } = searchParams;
 
@@ -20,7 +22,7 @@ const Cards = async ({ searchParams, category }) => {
           <Link
             href={`/${category}/${obj.id}?offset=${offset}`}
             key={obj.id}
-            className="p-2 bg-gray-800 overflow-hidden rounded-lg w-full text-teal-50 hover:text-black hover:bg-green-500 duration-500"
+            className="p-2 bg-gray-800 overflow-hidden rounded-lg w-full text-teal-50 hover:text-black hover:bg-green-500 hover:outline hover:outline-1 outline-zinc-950 duration-500"
           >
             <p
               className="text-center my-3 text-lg font-bold line-clamp-1 cursor-default"
@@ -41,6 +43,9 @@ const Cards = async ({ searchParams, category }) => {
                 sizes="100vw"
                 alt={`image of ${obj.name}`}
                 loading="lazy"
+                className=" object-cover"
+                quality={90}
+                placeholder={BASE64}
               />
             </figure>
           </Link>
