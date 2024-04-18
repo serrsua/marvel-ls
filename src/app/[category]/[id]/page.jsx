@@ -3,7 +3,7 @@ import axios from "axios";
 import Info from "./components/info";
 import Image from "next/image";
 
-const { BASE64 } = process.env
+import jsonData from "@/app/base64.json" 
 
 const Detail = async ({ params }) => {
   const { id, category } = params;
@@ -39,7 +39,7 @@ const Detail = async ({ params }) => {
             fill={true}
             sizes="90vw"
             quality={100}
-            placeholder={BASE64}
+            placeholder={jsonData.base64}
           />
         </div>
 

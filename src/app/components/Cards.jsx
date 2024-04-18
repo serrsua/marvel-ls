@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { func } from "../api/func";
 
-const { BASE64 } = process.env
+import jsonData from "@/app/base64.json" 
 
 const Cards = async ({ searchParams, category }) => {
   const { offset, search } = searchParams;
@@ -12,7 +12,6 @@ const Cards = async ({ searchParams, category }) => {
   if (!search) data = await func.getData(offset, category);
   else data = await func.search(category, search, offset);
 
-  //filtra datos dependiendo de la categoria
   const filteredData = await func.filter(category, data);
 
   return (
@@ -45,7 +44,7 @@ const Cards = async ({ searchParams, category }) => {
                 loading="lazy"
                 className=" object-cover"
                 quality={90}
-                placeholder={BASE64}
+                placeholder={jsonData.base64}
               />
             </figure>
           </Link>
