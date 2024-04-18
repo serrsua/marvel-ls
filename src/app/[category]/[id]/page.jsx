@@ -1,6 +1,9 @@
 import ButtonDetail from "@/app/components/buttonDetail";
 import axios from "axios";
 import Info from "./components/info";
+import Image from "next/image";
+
+import jsonData from "@/app/base64.json" 
 
 const Detail = async ({ params }) => {
   const { id, category } = params;
@@ -25,11 +28,20 @@ const Detail = async ({ params }) => {
           </p>
         )}
 
-        <img
-          src={`${thumbnail.path}.${thumbnail.extension}`}
-          alt={`image of ${name || title}`}
-          className="rounded-md border border-gray-500 border-opacity-30 w-[90%] h-fit lg:rounded-3xl xl:max-h-[40rem] xl:max-w-[30rem]"
-        />
+        <div
+          className={`rounded-md relative border border-gray-500 border-opacity-30 w-[90%] h-fit lg:rounded-3xl xl:max-h-[40rem] xl:max-w-[30rem] ${
+            name ? "aspect-square" : "aspect-[9/16]"
+          }`}
+        >
+          <Image
+            src={`${thumbnail.path}.${thumbnail.extension}`}
+            alt={`image of ${name || title}`}
+            fill={true}
+            sizes="90vw"
+            quality={100}
+            placeholder={jsonData.base64}
+          />
+        </div>
 
         <div
           className={

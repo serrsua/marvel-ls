@@ -22,10 +22,10 @@ export default function Home() {
             key={i}
           >
             <Link
-              className="flex justify-center items-center relative rounded-2xl overflow-hidden bg-red-400 h-4/5 w-4/5 duration-300 transition-all group hover:opacity-70 "
+              className="flex justify-center items-center relative rounded-2xl overflow-hidden bg-red-400 h-4/5 w-4/5 transition-all duration-500 group hover:opacity-70 hover:outline outline-green-500 "
               href={`${route.href}?offset=0`}
             >
-              <Image sizes="90vw" fill={true} alt="portada" src={route.img} />
+              <Image sizes="90vw" fill={true} className="object-cover" alt="portada" src={route.img} quality={100} />
               <h2 className=" absolute bg-stone-900 text-teal-50 text-4xl font-bold px-2 py-1 bg-opacity-70 rounded-2xl duration-300 transition-all group-hover:text-green-400 group-hover:scale-125 md:group-hover:scale-150">
                 {route.title}
               </h2>

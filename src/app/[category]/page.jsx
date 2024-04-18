@@ -36,7 +36,11 @@ const CategoryPage = async ({ params, searchParams }) => {
       <Paginate totalPages={totalPages} />
       <Suspense
         key={Date.now().toString()}
-        fallback={<div>Cargando las cartas</div>}
+        fallback={
+          <div className="grid place-items-center mt-[20%] font-bold text-3xl">
+            <div className="loader" />
+          </div>
+        }
       >
         <Cards searchParams={searchParams} category={category} />
       </Suspense>
