@@ -17,7 +17,7 @@ export default function InputSearch() {
     } else {
       params.delete("search");
     }
-    params.set("offset", "0")
+    params.set("offset", "0");
 
     replace(`${pathname}?${params.toString()}`);
   }, TIME_BETWEEN_SEARCH);
@@ -28,6 +28,9 @@ export default function InputSearch() {
         className="w-[170px] md:w-[250px] px-2 py-2 pl-8 text-black rounded text-base bg-teal-50 focus:outline-green-600"
         onChange={(e) => handleOnChange(e.target.value)}
         autoComplete="off"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") e.preventDefault();
+        }}
         type="text"
         name="query"
         placeholder="Buscar por nombre..."
