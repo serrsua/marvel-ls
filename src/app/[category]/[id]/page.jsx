@@ -3,10 +3,10 @@ import axios from "axios";
 import Info from "./components/info";
 import Image from "next/image";
 
-import jsonData from "@/app/base64.json" 
+import jsonData from "@/app/base64.json";
 
 const Detail = async ({ params }) => {
-  const { id, category } = params;
+  const { id, category } = await params;
 
   const { data } = await axios(
     `https://gateway.marvel.com:443/v1/public/${category}/${id}?ts=1&apikey=${process.env.API_KEY}&hash=${process.env.HASH}`
@@ -59,12 +59,8 @@ const Detail = async ({ params }) => {
           {category === "characters" ? null : (
             <Info title="Personajes" data={characters} />
           )}
-          {category === "comics" ? null : (
-            <Info title="Comics" data={comics} />
-          )}
-          {category === "series" ? null : (
-            <Info title="Series" data={series} />
-          )}
+          {category === "comics" ? null : <Info title="Comics" data={comics} />}
+          {category === "series" ? null : <Info title="Series" data={series} />}
         </div>
       </div>
     </section>

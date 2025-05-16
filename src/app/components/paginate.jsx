@@ -16,6 +16,7 @@ export default function Paginate({ totalPages }) {
     params.set("offset", String(clamped));
     return `${pathname}?${params.toString()}`;
   };
+
   const links = [
     {
       condition: actualPage > 1,

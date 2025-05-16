@@ -14,7 +14,8 @@ export const dynamicParams = false;
 //--------------------------------
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { category } = params;
+  const { category } = await params;
+  const awaitedSearchParams = await searchParams;
 
   return (
     <section className="py-5 flex flex-col items-center">
@@ -41,7 +42,7 @@ const CategoryPage = async ({ params, searchParams }) => {
           </div>
         }
       >
-        <Cards searchParams={searchParams} category={category} />
+        <Cards searchParams={awaitedSearchParams} category={category} />
       </Suspense>
     </section>
   );
