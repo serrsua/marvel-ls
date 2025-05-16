@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InputSearch from "./(inputSearch)/inputSearch";
+import { Suspense } from "react";
 
 const NavBar = () => {
   return (
@@ -8,7 +9,9 @@ const NavBar = () => {
         Salir
       </Link>
       <div className="w-full flex justify-around items-center gap-2 text-center">
-        <InputSearch />
+        <Suspense fallback={<div>Loading...</div>}>
+          <InputSearch />
+        </Suspense>
       </div>
     </nav>
   );

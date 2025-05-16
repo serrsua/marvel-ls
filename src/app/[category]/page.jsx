@@ -1,7 +1,5 @@
 import { Suspense } from "react";
 import Cards from "../components/Cards";
-import Paginate from "../components/paginate";
-import { func } from "../api/func";
 
 //genero las 3 rutas de categorias
 export async function generateStaticParams() {
@@ -16,15 +14,8 @@ export const dynamicParams = false;
 //--------------------------------
 
 const CategoryPage = async ({ params, searchParams }) => {
-  const { offset, search } = searchParams;
-  const { category } = params;
-
-  let data;
-
-  if (!search) data = await func.getData(offset, category);
-  else data = await func.search(category, search, offset);
-
-  const totalPages = Math.ceil(data.total / data.limit);
+  const { category } = await params;
+  const awaitedSearchParams = await searchParams;
 
   return (
     <section className="py-5 flex flex-col items-center">
@@ -33,16 +24,25 @@ const CategoryPage = async ({ params, searchParams }) => {
         {category === "comics" && `Comics de Marvel`}
         {category === "series" && `Series de Marvel`}
       </h2>
-      <Paginate totalPages={totalPages} />
       <Suspense
         key={Date.now().toString()}
         fallback={
           <div className="grid place-items-center mt-[20%] font-bold text-3xl">
-            <div className="loader" />
+            <div className="flex justify-center items-center py-10 w-full">
+              <div className="w-20 h-20 border-8 border-green-500 border-t-transparent rounded-full animate-spin" />
+            </div>
+            <div className="flex gap-4 flex-wrap items-center my-5 self-center">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="w-8 h-8 bg-gray-300 rounded animate-pulse"
+                />
+              ))}
+            </div>
           </div>
         }
       >
-        <Cards searchParams={searchParams} category={category} />
+        <Cards searchParams={awaitedSearchParams} category={category} />
       </Suspense>
     </section>
   );

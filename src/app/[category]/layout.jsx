@@ -1,10 +1,9 @@
 import NavBar from "../components/navBar";
 
-const LayoutHome = ({ children, params }) => {
-
+const LayoutHome = ({ children }) => {
   return (
     <section className="">
-      <NavBar params={params} />
+      <NavBar />
       {children}
     </section>
   );

@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export const func = {
-  filter: (category, data) => {
-    let filteredData = [];
+  filter: (category, data = []) => {
+    const totalPages = Math.ceil(data.total / data.limit); //cantidad de paginas totales
+    let filteredData = []; //items a devolver
     if (category === "characters") {
       filteredData = data.results.map((object) => {
         return {
@@ -29,7 +30,7 @@ export const func = {
         };
       });
     }
-    return filteredData;
+    return { filteredData, totalPages };
   },
   getData: async (offset, category) => {
     const data = (

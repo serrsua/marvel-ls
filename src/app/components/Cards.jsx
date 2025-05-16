@@ -2,17 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { func } from "../api/func";
 
-import jsonData from "@/app/base64.json" 
+import jsonData from "@/app/base64.json";
+import Paginate from "./paginate";
 
 const Cards = async ({ searchParams, category }) => {
   const { offset, search } = searchParams;
 
-  let data;
+  const data = search
+    ? await func.search(category, search, offset)
+    : await func.getData(offset, category);
 
-  if (!search) data = await func.getData(offset, category);
-  else data = await func.search(category, search, offset);
-
-  const filteredData = await func.filter(category, data);
+  const { filteredData, totalPages } = func.filter(category, data);
 
   return (
     <div className="flex flex-col flex-wrap gap-5 place-content-center mt-5 mx-5 min-w-[90%]">
@@ -50,6 +50,7 @@ const Cards = async ({ searchParams, category }) => {
           </Link>
         ))}
       </div>
+      <Paginate totalPages={totalPages} />
     </div>
   );
 };
